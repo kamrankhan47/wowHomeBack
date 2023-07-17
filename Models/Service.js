@@ -8,6 +8,12 @@ const serviceSchema = new mongoose.Schema({
     location:String,
     price:String,
     image: String,
+    categoryId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category",
+        required: true,
+    },
+    
 })
 const service = mongoose.model("Service", serviceSchema);
 module.exports = service;

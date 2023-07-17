@@ -33,6 +33,7 @@ const add = async (req, res) => {
             location: req.body.location,
             price: req.body.price,
             image: req.body.image,
+            categoryId: req.body.categoryId,
         });
         const data = await service.save();
         res.status(201).json(data);
@@ -49,4 +50,27 @@ const deleteById = async (req, res) => {
         res.status(400).json(err);
     }
 }
-module.exports = { getAll, getById, add, deleteById };
+
+const updateById = async (req, res) => {
+    try{
+        let service = await Service.findById(req.params.id);
+        service.name = req.body.name;
+        service.description = req.body.description;
+        service.workingDays = req.body.workingDays;
+        service.startTime = req.body.startTime;
+        service.location = req.body.location;
+        service.price = req.body.price;
+        service.image = req.body.image;
+        service.categoryId = req.body.categoryId;
+        service.save();
+        res.status(200).json(service);
+
+    }
+    catch{
+        res.status(400).json(err);
+
+    }
+}
+
+
+module.exports = { getAll, getById, add, deleteById ,updateById};

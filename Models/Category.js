@@ -5,8 +5,10 @@ const categorySchema = new mongoose.Schema({
   Image: String,
   service:[{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Service"
-  }]
+    ref: "Service",
+    required: true,
+  }],
+  categoryId:mongoose.Schema.Types.ObjectId,
 });
 const category = mongoose.model("Category", categorySchema);
 module.exports = category;

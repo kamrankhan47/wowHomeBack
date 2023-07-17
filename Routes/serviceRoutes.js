@@ -6,6 +6,7 @@ const { model } = require("mongoose");
 router.get("/", serviceController.getAll);
 router.get("/:id", serviceController.getById);
 router.post("/", serviceController.add);
+router.put("/:id", serviceController.updateById);
 
 
 router.delete("/:id", serviceController.deleteById);

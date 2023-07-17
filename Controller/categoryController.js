@@ -13,6 +13,15 @@ const getAll = async (req, res) => {
     }
 }
 
+const getSpecificService = async (req, res) => {
+    try {
+        const data = await Service.find({ categoryId: req.params.id });
+        res.status(200).json(data);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+}
+
 const getById = async (req, res) => {
     try {
         const data = await Category.findById(req.params.id).populate("service");
@@ -31,6 +40,7 @@ const add = async (req, res) => {
         const category = new Category({
             name: req.body.name,
             Image: req.body.Image,
+            service: req.body.service,
         });
         const data = await category.save();
         res.status(201).json(data);
@@ -121,4 +131,4 @@ login: async (req, res) => {
 },
 
 
-module.exports = { getAll, getById, add, deleteById };
+module.exports = { getAll, getById, add, deleteById,getSpecificService };
